@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Subscribers</title>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+</head>
+<body>
+<h1>Search Subscriber:</h1>
+
+
+<form th:action="@{/searchSubscriber}"
+      th:object="${searchForm}" method="POST">
+
+    <input type="text" th:field="*{search}"/>
+
+    <input type="submit" value="search"/>
+</form>
+
+<h1>Add Subscriber:</h1>
+<form th:action="@{/addSubscriber}"
+      th:object="${addSubscriberForm}" method="POST">
+
+    first name : <input type="text" th:field="*{firstName}"/>
+    last name :<input type="text" th:field="*{lastName}"/>
+    address :<input type="text" th:field="*{address}"/>
+
+    <input type="submit" value="add"/>
+</form>
+
+<br/>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Contracts</th>
+        </tr>
+        <tr th:each="subscriber : ${subscribersForm.subscribers}">
+            <td th:utext="${subscriber.id}"/>
+            <td th:utext="${subscriber.firstName}"/>
+            <td th:utext="${subscriber.lastName}"/>
+            <td th:utext="${subscriber.address}"/>
+            <td th:utext="${subscriber.contracts}"/>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
